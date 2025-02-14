@@ -1,0 +1,1 @@
+[{"model": "news.category", "pk": 1, "fields": {"name": "Poder"}}, {"model": "news.category", "pk": 2, "fields": {"name": "Tributos"}}, {"model": "news.category", "pk": 3, "fields": {"name": "Saúde"}}, {"model": "news.category", "pk": 4, "fields": {"name": "Energia"}}, {"model": "news.category", "pk": 5, "fields": {"name": "Trabalhista"}}]
