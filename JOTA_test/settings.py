@@ -148,6 +148,9 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+MEDIA_URL = "http://localhost:8000/media/"
+MEDIA_ROOT = (BASE_DIR / "media").absolute()
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 

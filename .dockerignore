@@ -26,3 +26,5 @@
 LICENSE
 README.md
 db.sqlite3
+.temp_venv
+.pytest_cache
