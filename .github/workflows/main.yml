@@ -5,8 +5,20 @@ jobs:
     runs-on: ubuntu-latest # operating system your code will run on
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
+      - name: Setup Python
+      - uses: actions/setup-python@v5
+        with:
+          python-version: 3.13.2
+      - name: Install dependecies
       - run: pip install flake8
       - run: pip install -r requirements.txt # install all our dependencies for the project
-      - run: pytest . # run pytest test
+      - name: Test with pytest
+      - run: pytest --junitxml=junit/test-results.xml . # run pytest test
       - run: flake8 . # run flake8 test
+      - name: Upload pytest test results
+        uses: actions/upload-artifact@v4
+        with:
+          name: pytest-results
+          path: junit/test-results.xml
+        # Use always() to always run this step to publish test results when there are test failures
+        if: ${{ always() }}
