@@ -1,12 +1,10 @@
+import tempfile
+from PIL import Image
+
 import pytest
 
 from rest_framework.test import APIClient
-
-@pytest.fixture
-def admin_client(admin_user):
-    client = APIClient()
-    client.force_authenticate(admin_user)
-    return client
+from rest_framework import status
 
 @pytest.fixture
 def unlogged_client(admin_user):
