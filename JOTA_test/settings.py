@@ -95,12 +95,11 @@ else:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql",
-            #"NAME": env("DATABASE_URL", default="postgres://postgres:some_secure_password@db:5432/dev"),
+            # "NAME": env("DATABASE_URL", default="postgres://postgres:some_secure_password@db:5432/dev"),
             "NAME": "dev",
             "USER": "postgres",
             "PASSWORD": "some_secure_password",
             "HOST": "db",
-            # ...
             "OPTIONS": {
                 "pool": {
                     "min_size": 2,

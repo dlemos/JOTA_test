@@ -7,6 +7,7 @@
 [ ] Remover imagens temporárias criadas pelo teste
 [ ] JWT
 [ ] Filas
-[ ] Github action para testes
+[X] Github action para testes
+[ ] Testar usando Postgresql
 [X] Servir arquivos pela aplicação por enquanto
 [ ] Ler configurações do ambiente (environment)

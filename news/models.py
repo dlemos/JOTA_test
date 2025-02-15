@@ -3,11 +3,13 @@ from django.utils.translation import gettext_lazy as _
 
 from main.models import User
 
+
 class Category(models.Model):
     name = models.CharField(max_length=80)
 
     def __str__(self):
         return self.name
+
 
 class News(models.Model):
     title = models.CharField(_("title"), max_length=1024)

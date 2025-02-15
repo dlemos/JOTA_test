@@ -12,39 +12,45 @@ from rest_framework import status
 from main.models import User
 from news.models import Category, News
 
+
 @pytest.fixture
 def admin_client(admin_user):
     client = APIClient()
     client.force_authenticate(admin_user)
     return client
 
+
 @pytest.fixture
 def unlogged_client(admin_user):
     client = APIClient()
     return client
 
+
 @pytest.fixture
 def author():
     return User.objects.create(username="Nemo")
+
 
 @pytest.fixture
 def category():
     return Category.objects.create(name="Tecnologia")
 
+
 @pytest.fixture
 def image():
-    img = Image.new("RGB", (2,2))
+    img = Image.new("RGB", (2, 2))
     tmp_file = tempfile.NamedTemporaryFile(suffix=".png", delete_on_close=True)
     img.save(tmp_file)
     tmp_file.seek(0)
     return tmp_file
+
 
 @pytest.fixture
 def news(author, category, image):
     return News.objects.create(**{
         "title": "Fixture News",
         "subtitle": "Just one more fixture",
-        "image": DjangoFile(image, name= pathlib.Path(image.name).name),
+        "image": DjangoFile(image, name=pathlib.Path(image.name).name),
         "content": "This is just a test to see what happens.",
         "publising_date": "2025-02-12",
         "status": "R",
@@ -52,6 +58,7 @@ def news(author, category, image):
         "author": author,
         "category": category
     })
+
 
 def test_create_news(unlogged_client, author, category, image):
     response = unlogged_client.post('/news/', {
@@ -67,9 +74,11 @@ def test_create_news(unlogged_client, author, category, image):
     })
     assert response.status_code == status.HTTP_201_CREATED
 
+
 def test_retrieve_news(unlogged_client, news):
     response = unlogged_client.get(f"/news/{news.pk}/")
     assert response.status_code == status.HTTP_200_OK
+
 
 def test_update_news(unlogged_client, news):
     response = unlogged_client.get(f"/news/{news.pk}/")
@@ -79,9 +88,9 @@ def test_update_news(unlogged_client, news):
     assert response.status_code == status.HTTP_200_OK, response.data
     assert response.data["status"] == "P"
 
+
 def test_delete_news(unlogged_client, news):
     assert News.objects.get(pk=news.pk)
     response = unlogged_client.delete(f"/news/{news.pk}/")
     assert response.status_code == status.HTTP_204_NO_CONTENT, response.data
     assert not News.objects.filter(pk=news.pk).exists()
-
