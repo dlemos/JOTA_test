@@ -1,4 +1,5 @@
 # JOTA test
+[![test_Django](https://github.com/dlemos/JOTA_test/actions/workflows/main.yml/badge.svg)](https://github.com/dlemos/JOTA_test/actions/workflows/main.yml)
 
 Essa é uma implementação dos requisitos do teste
 
