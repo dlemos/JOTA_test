@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 from django.utils.translation import gettext_lazy as _
@@ -84,28 +84,32 @@ WSGI_APPLICATION = 'JOTA_test.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if not os.environ.get("RUNNING_ON_DOCKER", False):
+    DATABASES = {
+        "default": {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3'
+        }
     }
-}
-
-"""
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        # ...
-        "OPTIONS": {
-            "pool": {
-                "min_size": 2,
-                "max_size": 4,
-                "timeout": 10,
-            }
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            #"NAME": env("DATABASE_URL", default="postgres://postgres:some_secure_password@db:5432/dev"),
+            "NAME": "dev",
+            "USER": "postgres",
+            "PASSWORD": "some_secure_password",
+            "HOST": "db",
+            # ...
+            "OPTIONS": {
+                "pool": {
+                    "min_size": 2,
+                    "max_size": 4,
+                    "timeout": 10,
+                }
+            },
         },
-    },
-}
-"""
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators

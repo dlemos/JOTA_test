@@ -9,6 +9,8 @@ ENV PYTHONDONTWRITEBYTECODE=1
 # Turns off buffering for easier container logging
 ENV PYTHONUNBUFFERED=1
 
+ENV RUNNING_ON_DOCKER=1
+
 RUN apt update && apt upgrade -y
 
 # Upgrade pip
