@@ -4,11 +4,11 @@ jobs:
   test_project:
     runs-on: ubuntu-latest # operating system your code will run on
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: 3.13.2
+          python-version: "3.13.2"
       - name: Install dependecies
         run: |
           pip install flake8
