@@ -5,7 +5,7 @@
 [ ] Criar um model para planos que permitem o acesso a uma ou mais verticais
 [ ] Adicionar plano ao model de usuário
 [ ] Remover imagens temporárias criadas pelo teste
-[ ] JWT
+[X] Autenticação baseada em JWT
 [ ] Filas
 [X] Github action para testes
 [ ] Testar usando Postgresql
