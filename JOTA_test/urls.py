@@ -26,9 +26,10 @@ from rest_framework_simplejwt.views import (
 )
 
 from news.views import NewsViewSet
+from main.views import UserViewSet
 
 router = routers.DefaultRouter()
-# router.register(r'user', views.UserViewSet)
+router.register(r'user', UserViewSet)
 router.register(r'news', NewsViewSet)
 
 urlpatterns = [
