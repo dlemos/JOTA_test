@@ -8,4 +8,5 @@ djangorestframework-simplejwt[crypto]==5.4.0
 #drf-spectacular==0.28.0 # Schema generator capable of 
 psycopg[binary,pool]==3.2.4
 freezegun==1.5.1
+celery[redis]==5.4.0
 #python-environ

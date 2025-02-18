@@ -10,6 +10,7 @@ services:
       - 8000:8000
     depends_on:
       - db
+      - redis
     environment:
       - DATABASE_URL=postgres://postgres:some_secure_password@db:5432/dev
       - FOO=BAR
@@ -17,6 +18,26 @@ services:
       - ./.env
     volumes:
       - ./media:/app/media/:rw
+
+  celery:
+    image: jotateste
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    depends_on:
+      - db
+      - redis
+    command: sh -c /app/entrypoint_celery.sh
+
+  celery-beat:
+    image: jotateste
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    depends_on:
+      - db
+      - redis
+    command: sh -c /app/entrypoint_celery-beat.sh
 
   db:
     image: postgres:17-alpine
@@ -27,6 +48,11 @@ services:
       - POSTGRES_DB=dev
     ports:
       - 5432:5432
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
 
 volumes:
   postgres_data:
