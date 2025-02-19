@@ -1,12 +1,15 @@
 # To ensure app dependencies are ported from your virtual environment/host machine into your container, run 'pip freeze > requirements.txt' in the terminal to overwrite this file
 Django==5.1.6
 gunicorn==21.2.0
-pillow==11.1.0
-pytest-django==4.10.0 # Pytest helpers for Django
+pillow==11.1.0 # Required since we using a ImageField
 djangorestframework==3.15.2 # DRF
-djangorestframework-simplejwt[crypto]==5.4.0
+djangorestframework-simplejwt[crypto]==5.4.0 # SWT
 #drf-spectacular==0.28.0 # Schema generator capable of 
-psycopg[binary,pool]==3.2.4
+psycopg[binary,pool]==3.2.4 # Postgre driver
+celery[redis]==5.4.0 # Async and scheduled tasks
+# python-environ
+
+# Testing
+pytest-django==4.10.0 # Pytest helpers for Django
 freezegun==1.5.1
-celery[redis]==5.4.0
-#python-environ
+# factory_boy
