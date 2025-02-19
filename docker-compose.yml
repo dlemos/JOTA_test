@@ -13,11 +13,12 @@ services:
       - redis
     environment:
       - DATABASE_URL=postgres://postgres:some_secure_password@db:5432/dev
-      - FOO=BAR
+      - REDIS_URL=redis://redis:6379/0
     env_file:
       - ./.env
     volumes:
       - ./media:/app/media/:rw
+    command: sh -c /app/entrypoint_django.sh
 
   celery:
     image: jotateste
@@ -27,6 +28,9 @@ services:
     depends_on:
       - db
       - redis
+    environment:
+      - DATABASE_URL=postgres://postgres:some_secure_password@db:5432/dev
+      - REDIS_URL=redis://redis:6379/0
     command: sh -c /app/entrypoint_celery.sh
 
   celery-beat:
@@ -37,6 +41,9 @@ services:
     depends_on:
       - db
       - redis
+    environment:
+      - DATABASE_URL=postgres://postgres:some_secure_password@db:5432/dev
+      - REDIS_URL=redis://redis:6379/0
     command: sh -c /app/entrypoint_celery-beat.sh
 
   db:

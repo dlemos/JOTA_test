@@ -12,11 +12,14 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 import os
 from pathlib import Path
 
+import environ
+
 from django.utils.translation import gettext_lazy as _
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+env = environ.Env()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -94,21 +97,15 @@ if not os.environ.get("RUNNING_ON_DOCKER", False):
     }
 else:
     DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.postgresql",
-            # "NAME": env("DATABASE_URL", default="postgres://postgres:some_secure_password@db:5432/dev"),
-            "NAME": "dev",
-            "USER": "postgres",
-            "PASSWORD": "some_secure_password",
-            "HOST": "db",
-            "OPTIONS": {
-                "pool": {
-                    "min_size": 2,
-                    "max_size": 4,
-                    "timeout": 10,
-                }
-            },
-        },
+        "default": env.db(default="postgres://postgres:some_secure_password@db:5432/dev")
+    }
+    # Is there a better way to do this?
+    DATABASES["OPTIONS"] = {
+        "pool": {
+            "min_size": 2,
+            "max_size": 4,
+            "timeout": 10,
+        }
     }
 
 # Password validation
@@ -169,8 +166,8 @@ REST_FRAMEWORK = {
 }
 
 # Celery settings
-CELERY_BROKER_URL = "redis://redis:6379/0"
-CELERY_RESULT_BACKEND = "redis://redis:6379/0"
+CELERY_BROKER_URL = env("REDIS_URL")
+CELERY_RESULT_BACKEND = env("REDIS_URL")
 CELERY_TIMEZONE = TIME_ZONE
 CELERY_BEAT_SCHEDULE = {
     "check_and_publish_scheduled_news_every_minute": {

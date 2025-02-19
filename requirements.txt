@@ -7,7 +7,7 @@ djangorestframework-simplejwt[crypto]==5.4.0 # SWT
 #drf-spectacular==0.28.0 # Schema generator capable of 
 psycopg[binary,pool]==3.2.4 # Postgre driver
 celery[redis]==5.4.0 # Async and scheduled tasks
-# python-environ
+django-environ==0.12.0
 
 # Testing
 pytest-django==4.10.0 # Pytest helpers for Django
