@@ -22,7 +22,7 @@ class News(models.Model):
     content = models.TextField(_("content"))
     publising_date = models.DateTimeField(_("publishing_date"))
     author = models.ForeignKey(User, verbose_name=_("author"), on_delete=models.PROTECT)
-    status = models.CharField(_("status"), choices=Status, default="R", max_length=1)
+    status = models.CharField(_("status"), choices=Status, default=Status.RASCUNHO, max_length=1)
     # options here need to extended in the future
     category = models.ForeignKey(Category, verbose_name=_("category"), on_delete=models.PROTECT)
     is_pro_only = models.BooleanField(_("is_pro_only"), default=False)

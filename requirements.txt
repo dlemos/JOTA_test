@@ -12,4 +12,4 @@ celery[redis]==5.4.0 # Async and scheduled tasks
 # Testing
 pytest-django==4.10.0 # Pytest helpers for Django
 freezegun==1.5.1
-# factory_boy
+factory_boy==3.3.3
