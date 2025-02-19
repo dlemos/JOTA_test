@@ -12,16 +12,17 @@ class Category(models.Model):
 
 
 class News(models.Model):
+    class Status(models.TextChoices):
+        RASCUNHO = "R"
+        PUBLICADO = "P"
+
     title = models.CharField(_("title"), max_length=1024)
     subtitle = models.CharField(_("subtitle"), max_length=1024)
     image = models.ImageField(_("image"))
     content = models.TextField(_("content"))
     publising_date = models.DateField(_("publishing_date"))
     author = models.ForeignKey(User, verbose_name=_("author"), on_delete=models.PROTECT)
-    status = models.CharField(_("status"), choices={
-        "R": "Rascunho",
-        "P": "Publicado"
-    }, default="R", max_length=1)
+    status = models.CharField(_("status"), choices=Status, default="R", max_length=1)
     # options here need to extended in the future
     category = models.ForeignKey(Category, verbose_name=_("category"), on_delete=models.PROTECT)
     is_pro_only = models.BooleanField(_("is_pro_only"), default=False)
