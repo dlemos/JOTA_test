@@ -15,3 +15,4 @@
 [X] Endpoint para administrar usuários
 [X] Limitar aos admins o Endpoint para administrar usuários
 [ ] Nested update para Subscription?
+[ ] Considerar se há algum código que se beneficie de tipagem
