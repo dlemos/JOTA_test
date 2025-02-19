@@ -17,4 +17,9 @@
 - [X] Endpoint para administrar usuários
 - [X] Limitar aos admins o Endpoint para administrar usuários
 - [ ] Nested update para Subscription?
+
+## Se tiver tempo
 - [ ] Considerar se há algum código que se beneficie de tipagem
+- [ ] Caching com Redis
+- [ ] Enviar email ao autor de uma notícia que ela foi publicada com sucesso
+- [ ] Pre commit hook ou pelo menos um script pra rodar antes de fazer um commit (que reformate o código com o black ou autopep8?)
