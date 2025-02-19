@@ -20,7 +20,7 @@ class News(models.Model):
     subtitle = models.CharField(_("subtitle"), max_length=1024)
     image = models.ImageField(_("image"))
     content = models.TextField(_("content"))
-    publising_date = models.DateField(_("publishing_date"))
+    publising_date = models.DateTimeField(_("publishing_date"))
     author = models.ForeignKey(User, verbose_name=_("author"), on_delete=models.PROTECT)
     status = models.CharField(_("status"), choices=Status, default="R", max_length=1)
     # options here need to extended in the future
