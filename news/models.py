@@ -29,6 +29,13 @@ class News(models.Model):
     )
     # options here need to extended in the future
     category = models.ForeignKey(
-        Category, verbose_name=_("category"), on_delete=models.PROTECT, help_text=_("What vertical this news bellogs to")
+        Category,
+        verbose_name=_("category"),
+        on_delete=models.PROTECT,
+        help_text=_("What vertical this news bellogs to")
     )
-    is_pro_only = models.BooleanField(_("is_pro_only"), default=False, help_text=_("Is this news only for PRO readers?"))
+    is_pro_only = models.BooleanField(
+        _("is_pro_only"),
+        default=False,
+        help_text=_("Is this news only for PRO readers?")
+    )
