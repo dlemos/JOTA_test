@@ -48,6 +48,8 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'rest_framework_simplejwt',
+    'drf_spectacular',
+    'corsheaders',
 
     'main',
     'news',
@@ -56,6 +58,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -163,6 +166,7 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
 # Celery settings
@@ -176,3 +180,15 @@ CELERY_BEAT_SCHEDULE = {
         "args": ()
     }
 }
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'JOTA Test API',
+    'DESCRIPTION': 'An API to serve and manage news and users',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    'SERVERS': [{'url': 'http://localhost:8000'}]
+}
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8080",
+]
