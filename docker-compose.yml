@@ -12,8 +12,6 @@ services:
     environment:
       - DATABASE_URL=postgres://postgres:some_secure_password@db:5432/dev
       - REDIS_URL=redis://redis:6379/0
-    env_file:
-      - ./.env
     volumes:
       - ./media:/app/media/:rw
     command: sh -c /app/entrypoint_django.sh
