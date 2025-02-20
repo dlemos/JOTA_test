@@ -10,17 +10,10 @@ jobs:
         with:
           python-version: "3.13.2"
       - name: Install dependecies
-        run: |
-          pip install flake8
-          pip install -r requirements.txt # install all our dependencies for the project
+        run: pip install flake8
       - name: Test with pytest
-        run: pytest --junitxml=junit/test-results.xml . # run pytest test
+        run: |
+          docker-compose up -d
+          docker-compose exec jotateste pytest --junitxml=junit/test-results.xml . # run pytest test
       - name: Run flake8
         run: flake8 . # run flake8 test
-      - name: Upload pytest test results
-        uses: actions/upload-artifact@v4
-        with:
-          name: pytest-results
-          path: junit/test-results.xml
-        # Use always() to always run this step to publish test results when there are test failures
-        if: ${{ always() }}
