@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-20 01:15+0000\n"
+"POT-Creation-Date: 2025-02-20 03:06+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,10 +23,8 @@ msgid "draft"
 msgstr "rascunho"
 
 #: news/models.py:17
-#, fuzzy
-#| msgid "publishing_date"
 msgid "published"
-msgstr "data_de_publicação"
+msgstr "publicada"
 
 #: news/models.py:19
 msgid "title"
@@ -40,30 +38,62 @@ msgstr "O título da notícia"
 msgid "subtitle"
 msgstr "subtítulo"
 
+#: news/models.py:20
+msgid "The text the goes right bellow the title"
+msgstr "O texto que vai diretamente embaixo do título"
+
 #: news/models.py:21
 msgid "image"
 msgstr "imagem"
+
+#: news/models.py:21
+msgid "A image that is intimatelly connected to the news"
+msgstr "Uma imagem que está intimamente conectada a notícia"
 
 #: news/models.py:22
 msgid "content"
 msgstr "conteúdo"
 
+#: news/models.py:22
+msgid "The body of the news"
+msgstr "O corpo da notícia"
+
 #: news/models.py:23
 msgid "publishing_date"
 msgstr "data_de_publicação"
 
-#: news/models.py:24
+#: news/models.py:23
+msgid "When this news should be published"
+msgstr "Quando essa notícia deve ser publicada"
+
+#: news/models.py:25
 msgid "author"
 msgstr "autor"
 
 #: news/models.py:25
+msgid "The editor of this news"
+msgstr "O editor dessa notícia"
+
+#: news/models.py:28
 msgid "status"
 msgstr "status"
 
-#: news/models.py:27
+#: news/models.py:28
+msgid "Is this news pubblished or not?"
+msgstr "Essa notícia está publicada ou não?"
+
+#: news/models.py:32
 msgid "category"
 msgstr "categoria"
 
-#: news/models.py:28
+#: news/models.py:32
+msgid "What vertical this news bellogs to"
+msgstr "A qual vertical essa notícia pretence"
+
+#: news/models.py:34
 msgid "is_pro_only"
 msgstr "somente_para_pro"
+
+#: news/models.py:34
+msgid "Is this news only for PRO readers?"
+msgstr "Essa notícia é somente para usuários PRO?"

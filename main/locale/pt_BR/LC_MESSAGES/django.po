@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-20 02:03+0000\n"
+"POT-Creation-Date: 2025-02-20 02:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,18 +17,19 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
 #: main/models.py:18
 msgid "User associated with this subscription"
 msgstr "Usuário associado com essa assinatura"
 
-#: main/models.py:19
+#: main/models.py:20
 msgid "Categories of PRO news this subscriber have access to"
 msgstr "Categorias de notícias PRO que esse assinante tem acesso"
 
-#: main/models.py:20
+#: main/models.py:22
 msgid "plan"
 msgstr "plano"
 
-#: main/models.py:20
+#: main/models.py:22
 msgid "User's plan"
 msgstr "Plano do usuário"
