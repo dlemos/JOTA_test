@@ -14,6 +14,7 @@ jobs:
       - name: Test with pytest
         run: |
           docker compose up -d
+          docker compose exec jotateste sh -c "chmod a+x /app/media"
           docker compose exec jotateste pytest --junitxml=junit/test-results.xml . # run pytest test
       - name: Run flake8
         run: flake8 . # run flake8 test
