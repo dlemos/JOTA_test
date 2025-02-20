@@ -17,23 +17,18 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+#: main/models.py:18
+msgid "User associated with this subscription"
+msgstr "Usuário associado com essa assinatura"
 
-#: JOTA_test/settings.py:139
-msgid "Portuguese"
-msgstr "Português"
+#: main/models.py:19
+msgid "Categories of PRO news this subscriber have access to"
+msgstr "Categorias de notícias PRO que esse assinante tem acesso"
 
-#: JOTA_test/settings.py:140
-msgid "English"
-msgstr "Inglês"
+#: main/models.py:20
+msgid "plan"
+msgstr "plano"
 
-#~ msgid "User associated with this subscription"
-#~ msgstr "Usuário associado com a assinatura"
-
-#~ msgid "Categories of PRO news this subscriber have access to"
-#~ msgstr "Categorias de notícias PRO que esse inscrito tem acesso"
-
-#~ msgid "plan"
-#~ msgstr "plano"
-
-#~ msgid "User's plan"
-#~ msgstr "Plano do usuário"
+#: main/models.py:20
+msgid "User's plan"
+msgstr "Plano do usuário"
