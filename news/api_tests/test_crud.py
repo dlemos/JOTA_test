@@ -83,7 +83,7 @@ def test_retrieve_news(unlogged_client, news):
 def test_update_news(unlogged_client, news):
     response = unlogged_client.get(f"/news/{news.pk}/")
     assert response.status_code == status.HTTP_200_OK
-    assert response.data["status"] == "R"
+    assert response.data["status"] == "D"
     response = unlogged_client.patch(f"/news/{news.pk}/", {"status": "P"})
     assert response.status_code == status.HTTP_200_OK, response.data
     assert response.data["status"] == "P"
