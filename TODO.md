@@ -19,7 +19,7 @@
 - [ ] Nested update para Subscription?
 
 ## Se tiver tempo
-- [ ] Descrever campos nos models para sair no schema da API?
+- [X] Descrever campos nos models para sair no schema da API?
 - [ ] Enviar email ao autor de uma notícia que ela foi publicada com sucesso
 - [ ] Testar usando Postgresql
 - [ ] Considerar se há algum código que se beneficie de tipagem
