@@ -9,6 +9,7 @@ from PIL import Image
 import pytest
 
 from django.core.files.base import File as DjangoFile
+from django.contrib.auth.models import Group
 
 from rest_framework.test import APIClient
 from rest_framework import status
@@ -16,6 +17,9 @@ from rest_framework_simplejwt.tokens import AccessToken
 
 from main.models import User
 from news.models import Category, News
+
+
+pytestmark = pytest.mark.django_db
 
 
 @pytest.fixture
@@ -73,6 +77,13 @@ def news(author, category, image):
     })
 
 
+@pytest.fixture(autouse=True)
+def editor_group():
+    group = Group.objects.create(name="Editor")
+    yield group
+    group.delete()
+
+
 def test_existing_user_should_not_be_able_to_generate_a_token_with_wrong_password(unlogged_client, user_with_password):
     response = unlogged_client.post("/api/token/", {
         "username": user_with_password.username,
@@ -93,16 +104,16 @@ def test_delete_should_fail_using_a_bad_JWT_token(unlogged_client, news):
     assert response.status_code == status.HTTP_401_UNAUTHORIZED, response.data
 
 
-def test_delete_news_using_valid_JWT_token(unlogged_client, user_with_password, news):
-    token = AccessToken.for_user(user_with_password)
+def test_delete_news_using_valid_JWT_token(unlogged_client, admin_user, news):
+    token = AccessToken.for_user(admin_user)
     unlogged_client.credentials(HTTP_AUTHORIZATION=f"Bearer {token}")
     response = unlogged_client.delete(f"/news/{news.pk}/")
     assert response.status_code == status.HTTP_204_NO_CONTENT, response.data
     assert not News.objects.filter(pk=news.pk).exists()
 
 
-def test_get_should_fail_with_expired_JWT_token(unlogged_client, user_with_password, news):
-    token = AccessToken.for_user(user_with_password)
+def test_get_should_fail_with_expired_JWT_token(unlogged_client, admin_user, news):
+    token = AccessToken.for_user(admin_user)
     token.set_exp(lifetime=-timedelta(days=1))
     unlogged_client.credentials(HTTP_AUTHORIZATION=f"Bearer {token}")
     response = unlogged_client.get(f"/news/{news.pk}/")

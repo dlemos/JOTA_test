@@ -4,13 +4,18 @@ from PIL import Image
 
 import pytest
 
+from django.contrib.auth.models import Group
 from django.core.files.base import File as DjangoFile
 
 from rest_framework.test import APIClient
 from rest_framework import status
+from rest_framework_simplejwt.tokens import AccessToken
 
 from main.models import User
 from news.models import Category, News
+
+
+pytestmark = pytest.mark.django_db
 
 
 @pytest.fixture
@@ -27,8 +32,10 @@ def unlogged_client(admin_user):
 
 
 @pytest.fixture
-def author():
-    return User.objects.create(username="Nemo")
+def author(editor_group):
+    user = User.objects.create(username="Nemo")
+    user.groups.add(editor_group)
+    return user
 
 
 @pytest.fixture
@@ -53,14 +60,23 @@ def news(author, category, image):
         "image": DjangoFile(image, name=pathlib.Path(image.name).name),
         "content": "This is just a test to see what happens.",
         "publising_date": "2025-02-12",
-        "status": "D",
+        "status": "P",
         "is_pro_only": False,
         "author": author,
         "category": category
     })
 
 
+@pytest.fixture(autouse=True)
+def editor_group():
+    group = Group.objects.create(name="Editor")
+    yield group
+    group.delete()
+
+
 def test_create_news(unlogged_client, author, category, image):
+    token = AccessToken.for_user(author)
+    unlogged_client.credentials(HTTP_AUTHORIZATION=f"Bearer {token}")
     response = unlogged_client.post('/news/', {
         "title": "This is just a test",
         "subtitle": "really",
@@ -72,7 +88,7 @@ def test_create_news(unlogged_client, author, category, image):
         "author": author.pk,
         "category": category.pk
     })
-    assert response.status_code == status.HTTP_201_CREATED
+    assert response.status_code == status.HTTP_201_CREATED, response.data
 
 
 def test_retrieve_news(unlogged_client, news):
@@ -80,17 +96,21 @@ def test_retrieve_news(unlogged_client, news):
     assert response.status_code == status.HTTP_200_OK
 
 
-def test_update_news(unlogged_client, news):
+def test_update_test_update_newsnews(unlogged_client, author, news):
+    token = AccessToken.for_user(author)
+    unlogged_client.credentials(HTTP_AUTHORIZATION=f"Bearer {token}")
     response = unlogged_client.get(f"/news/{news.pk}/")
     assert response.status_code == status.HTTP_200_OK
-    assert response.data["status"] == "D"
-    response = unlogged_client.patch(f"/news/{news.pk}/", {"status": "P"})
-    assert response.status_code == status.HTTP_200_OK, response.data
-    assert response.data["status"] == "P"
+    assert response.data["subtitle"] == "Just one more fixture"
+    new_response = unlogged_client.patch(f"/news/{news.pk}/", {"subtitle": "This is a subtitle"})
+    assert new_response.status_code == status.HTTP_200_OK, response.data
+    assert new_response.data["subtitle"] == "This is a subtitle"
 
 
-def test_delete_news(unlogged_client, news):
+def test_delete_news(unlogged_client, author, news):
     assert News.objects.get(pk=news.pk)
+    token = AccessToken.for_user(author)
+    unlogged_client.credentials(HTTP_AUTHORIZATION=f"Bearer {token}")
     response = unlogged_client.delete(f"/news/{news.pk}/")
     assert response.status_code == status.HTTP_204_NO_CONTENT, response.data
     assert not News.objects.filter(pk=news.pk).exists()

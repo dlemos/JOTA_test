@@ -30,7 +30,7 @@ from main.views import UserViewSet
 
 router = routers.DefaultRouter()
 router.register(r'user', UserViewSet)
-router.register(r'news', NewsViewSet)
+router.register(r'news', NewsViewSet, basename="news")
 
 urlpatterns = [
     path('', include(router.urls)),
