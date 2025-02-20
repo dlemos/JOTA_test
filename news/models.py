@@ -13,16 +13,16 @@ class Category(models.Model):
 
 class News(models.Model):
     class Status(models.TextChoices):
-        RASCUNHO = "R"
-        PUBLICADO = "P"
+        DRAFT = "D", _("draft")
+        PUBLISHED = "P", _("published")
 
-    title = models.CharField(_("title"), max_length=1024)
-    subtitle = models.CharField(_("subtitle"), max_length=1024)
-    image = models.ImageField(_("image"))
-    content = models.TextField(_("content"))
-    publising_date = models.DateTimeField(_("publishing_date"))
-    author = models.ForeignKey(User, verbose_name=_("author"), on_delete=models.PROTECT)
-    status = models.CharField(_("status"), choices=Status, default=Status.RASCUNHO, max_length=1)
+    title = models.CharField(_("title"), max_length=1024, help_text=_("The title of the news"))
+    subtitle = models.CharField(_("subtitle"), max_length=1024, help_text="The text the goes right bellow the title")
+    image = models.ImageField(_("image"), help_text="A image that is intimatelly connected to the news")
+    content = models.TextField(_("content"), help_text="The body of the news")
+    publising_date = models.DateTimeField(_("publishing_date"), help_text="When this news should be published")
+    author = models.ForeignKey(User, verbose_name=_("author"), on_delete=models.PROTECT, help_text="The editor of this news")
+    status = models.CharField(_("status"), choices=Status, default=Status.DRAFT, max_length=1, help_text="Is this news public of private?")
     # options here need to extended in the future
-    category = models.ForeignKey(Category, verbose_name=_("category"), on_delete=models.PROTECT)
-    is_pro_only = models.BooleanField(_("is_pro_only"), default=False)
+    category = models.ForeignKey(Category, verbose_name=_("category"), on_delete=models.PROTECT, help_text="What vertical this news bellogs to")
+    is_pro_only = models.BooleanField(_("is_pro_only"), default=False, help_text="Is this news only for PRO readers?")

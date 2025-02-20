@@ -186,7 +186,8 @@ SPECTACULAR_SETTINGS = {
     'DESCRIPTION': 'An API to serve and manage news and users',
     'VERSION': '1.0.0',
     'SERVE_INCLUDE_SCHEMA': False,
-    'SERVERS': [{'url': 'http://localhost:8000'}]
+    'SERVERS': [{'url': 'http://localhost:8000'}],
+    'COMPONENT_SPLIT_REQUEST': True
 }
 
 CORS_ALLOWED_ORIGINS = [

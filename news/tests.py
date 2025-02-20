@@ -53,7 +53,7 @@ def unpublished_news(author, category, image):
         "image": DjangoFile(image, name=pathlib.Path(image.name).name),
         "content": "This is just a test to see what happens.",
         "publising_date": "2025-02-12",
-        "status": News.Status.RASCUNHO,
+        "status": News.Status.DRAFT,
         "is_pro_only": False,
         "author": author,
         "category": category
@@ -70,7 +70,7 @@ def test_admin_user_should_be_able_to_access_the_api(admin_client):
 
 @freeze_time("2024-01-01 10:00 +00:00")
 def test_check_and_publish_scheduled_news(unpublished_news):
-    news = NewsFactory(publising_date="2024-01-01 09:59 +00:00", status=News.Status.RASCUNHO)
+    news = NewsFactory(publising_date="2024-01-01 09:59 +00:00", status=News.Status.DRAFT)
     check_and_publish_scheduled_news()
-    assert not News.objects.filter(pk=news.pk, status=News.Status.RASCUNHO).exists()
-    assert News.objects.filter(pk=news.pk, status=News.Status.PUBLICADO).exists()
+    assert not News.objects.filter(pk=news.pk, status=News.Status.DRAFT).exists()
+    assert News.objects.filter(pk=news.pk, status=News.Status.PUBLISHED).exists()

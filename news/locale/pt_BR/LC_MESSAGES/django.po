@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-13 00:29+0000\n"
+"POT-Creation-Date: 2025-02-20 01:15+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,38 +17,53 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-#: news/models.py:13
+
+#: news/models.py:16
+msgid "draft"
+msgstr "rascunho"
+
+#: news/models.py:17
+#, fuzzy
+#| msgid "publishing_date"
+msgid "published"
+msgstr "data_de_publicação"
+
+#: news/models.py:19
 msgid "title"
 msgstr "título"
 
-#: news/models.py:14
+#: news/models.py:19
+msgid "The title of the news"
+msgstr "O título da notícia"
+
+#: news/models.py:20
 msgid "subtitle"
 msgstr "subtítulo"
 
-#: news/models.py:15
+#: news/models.py:21
 msgid "image"
 msgstr "imagem"
 
-#: news/models.py:16
+#: news/models.py:22
 msgid "content"
 msgstr "conteúdo"
 
-#: news/models.py:17
+#: news/models.py:23
 msgid "publishing_date"
-msgstr "data de publicação"
+msgstr "data_de_publicação"
 
-#: news/models.py:18
+#: news/models.py:24
 msgid "author"
 msgstr "autor"
 
-#: news/models.py:19
+#: news/models.py:25
 msgid "status"
 msgstr "status"
 
-#: news/models.py:24
+#: news/models.py:27
 msgid "category"
 msgstr "categoria"
 
-#: news/models.py:25
+#: news/models.py:28
 msgid "is_pro_only"
-msgstr "somente para pro"
+msgstr "somente_para_pro"

@@ -66,7 +66,7 @@ def news(author, category, image):
         "image": DjangoFile(image, name=pathlib.Path(image.name).name),
         "content": "This is just a test to see what happens.",
         "publising_date": "2025-02-12",
-        "status": "R",
+        "status": "D",
         "is_pro_only": False,
         "author": author,
         "category": category
