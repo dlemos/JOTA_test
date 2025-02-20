@@ -21,8 +21,14 @@ class News(models.Model):
     image = models.ImageField(_("image"), help_text="A image that is intimatelly connected to the news")
     content = models.TextField(_("content"), help_text="The body of the news")
     publising_date = models.DateTimeField(_("publishing_date"), help_text="When this news should be published")
-    author = models.ForeignKey(User, verbose_name=_("author"), on_delete=models.PROTECT, help_text="The editor of this news")
-    status = models.CharField(_("status"), choices=Status, default=Status.DRAFT, max_length=1, help_text="Is this news public of private?")
+    author = models.ForeignKey(
+        User, verbose_name=_("author"), on_delete=models.PROTECT, help_text="The editor of this news"
+    )
+    status = models.CharField(
+        _("status"), choices=Status, default=Status.DRAFT, max_length=1, help_text="Is this news public of private?"
+    )
     # options here need to extended in the future
-    category = models.ForeignKey(Category, verbose_name=_("category"), on_delete=models.PROTECT, help_text="What vertical this news bellogs to")
+    category = models.ForeignKey(
+        Category, verbose_name=_("category"), on_delete=models.PROTECT, help_text="What vertical this news bellogs to"
+    )
     is_pro_only = models.BooleanField(_("is_pro_only"), default=False, help_text="Is this news only for PRO readers?")

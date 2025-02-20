@@ -14,5 +14,7 @@ class Subscription(models.Model):
         JOTA_PRO = "P"
 
     user = models.OneToOneField(User, on_delete=models.PROTECT, help_text=_("User associated with this subscription"))
-    verticals = models.ManyToManyField("news.Category", help_text=_("Categories of PRO news this subscriber have access to"))
+    verticals = models.ManyToManyField(
+        "news.Category", help_text=_("Categories of PRO news this subscriber have access to")
+    )
     plan = models.CharField(_("plan"), max_length=1, choices=Plans, help_text=_("User's plan"))
