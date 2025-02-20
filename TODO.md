@@ -2,7 +2,7 @@
 ## MVP
 - [X] Permitir o agendamento de publicações.
 - [X] Definir a relação do cliente com o plano x Vertical
-- [ ] Documentação da API: Implementação com Swagger.
+- [X] Documentação da API: Implementação com Swagger.
 - [X] Usar Postgres (adicionar no compose e mudar a configuração do projeto)
 - [X] ~~Adicionar plano ao model de usuário~~ Subscription
 - [ ] Remover imagens temporárias criadas pelo teste
@@ -19,7 +19,12 @@
 - [ ] Nested update para Subscription?
 
 ## Se tiver tempo
+- [ ] Descrever campos nos models para sair no schema da API?
+- [ ] Enviar email ao autor de uma notícia que ela foi publicada com sucesso
+- [ ] Testar usando Postgresql
 - [ ] Considerar se há algum código que se beneficie de tipagem
 - [ ] Caching com Redis
-- [ ] Enviar email ao autor de uma notícia que ela foi publicada com sucesso
 - [ ] Pre commit hook ou pelo menos um script pra rodar antes de fazer um commit (que reformate o código com o black ou autopep8?)
+- [ ] Remover imagens temporárias criadas pelo teste
+- [ ] Talvez não retornar 404 para leitors Jota Info tentando acessar notícias não disponiveis nesse plano ou nas verticais do plano dele
+- [ ] Tornar assinaturas mais dinâmicas. Com data de criação, termino e permitir que haja mais de uma mas apenas uma ativa de cada vez
